@@ -1,38 +1,26 @@
 #ifndef BCTP_H
 # define BCTP_H
 
+# define REQTYPES_LEN 3
 // Request types
-enum {
+enum e_reqtypes{
 	SIGNUP,
 	SINGIN,
 	SIGNOUT
 };
 
-// Sign up headers
-enum {
+// Request headers
+enum e_headers {
 	ID_TYPE,
 	ID,
-	PASSOWRD,
+	PASSWORD,
 	NAME,
-	SURNAME
-};
-
-// Sign in headers
-enum {
-	ID_TYPE,
-	ID,
-	PASSOWRD
-};
-
-// Sign out headers
-enum {
-	ID_TYPE,
-	ID,
+	SURNAME,
 	KEY
 };
 
 // Id types
-enum {
+enum e_idtype{
 	TELNO,
 	EMAIL,
 	UNAME

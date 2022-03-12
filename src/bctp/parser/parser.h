@@ -2,8 +2,9 @@
 # define PARSER_H
 
 #include "../bctp.h"
+# include "../../string/strings.h"
 
-typedef void *(*reqtype_func)(char *, unsigned int);
+typedef void *(*t_reqtype_func)(char *, unsigned int);
 
 void	*get_signup(char *req, unsigned int req_len);
 void	*get_signin(char *req, unsigned int req_len);
