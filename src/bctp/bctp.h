@@ -38,7 +38,12 @@ enum {
 	UNAME
 };
 
-typedef struct s_signup {
+typedef struct	s_parsed_request {
+	char	request_type;
+	void	*data;
+}	t_parsed_request;
+
+typedef struct	s_signup {
 	char	id_type;
 	char	*id;
 	char	*password;
