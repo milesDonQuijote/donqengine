@@ -19,13 +19,13 @@ void	*get_signup(char *request, unsigned int req_len)
 			return ((void *)0);
 		}
 		if (*request == ID_TYPE && !signup->id_type) {
-			request += 2;
-			signup->id_type = *request++;
+			request += 3;
+			signup->id_type = *request;
 			req_len -= 3;
 		}
 		else if ((*request == ID && !signup->id) || (*request == PASSWORD && !signup->password) ||
 				(*request == NAME && !signup->name) || (*request == SURNAME && !signup->surname)) {
-			if (req_len - 3 < (unsigned int)*(++request)) { // [value_len = n] --> n*byte
+			if ((req_len - 2) < (unsigned int)*(++request)) { // [value_len = n] --> n*byte
 				free(signup);
 				return ((void *)0);
 			}
@@ -46,7 +46,7 @@ void	*get_signup(char *request, unsigned int req_len)
 		}
 		header_count--;
 	}
-	if (header_count)
+	if (header_count || req_len)
 	{
 		free(signup);
 		return ((void *)0);

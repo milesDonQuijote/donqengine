@@ -7,6 +7,7 @@ char	*ft_substr(char *s, unsigned int start, unsigned int len)
 
 	if (!s)
 		return ((char *)0);
+	idx = 0;
 	result = (char *)malloc(sizeof(char) * (len + 1));
 	while (len--)
 		result[idx++] = s[start++];
