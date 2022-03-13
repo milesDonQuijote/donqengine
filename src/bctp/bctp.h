@@ -5,7 +5,7 @@
 // Request types
 enum e_reqtypes{
 	SIGNUP,
-	SINGIN,
+	SIGNIN,
 	SIGNOUT
 };
 

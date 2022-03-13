@@ -14,13 +14,13 @@ void	*get_signup(char *request, unsigned int req_len)
 	*signup = (t_signup){0, 0, 0, 0, 0};
 	while (header_count && req_len)
 	{
-		if (req_len < 3) { // [header][value_len][value]
+		if (req_len < 2 || req_len < 2 + *(request + 1)) { // [header][value_len][value]
 			free(signup);
 			return ((void *)0);
 		}
 		if (*request == ID_TYPE && !signup->id_type) {
-			request += 3;
-			signup->id_type = *request;
+			request += 2;
+			signup->id_type = *request++;
 			req_len -= 3;
 		}
 		else if ((*request == ID && !signup->id) || (*request == PASSWORD && !signup->password) ||
@@ -37,7 +37,7 @@ void	*get_signup(char *request, unsigned int req_len)
 				signup->name = ft_substr(request, 1, (unsigned int)*request);
 			else
 				signup->surname = ft_substr(request, 1, (unsigned int)*request);
-			req_len -= 2 + (int)*request;
+			req_len -= 2 + *request;
 			request += *request + 1;
 		}
 		else {
