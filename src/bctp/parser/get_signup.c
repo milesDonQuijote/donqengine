@@ -1,5 +1,20 @@
 #include "parser.h"
 
+static int	string_header(char header, t_signup *s, char *value, unsigned int value_len)
+{
+	if (header == NAME && !s->name)
+		s->id = ft_substr(value, 0, value_len);
+	else if (header == PASSWORD && !s->password)
+		s->password = ft_substr(value, 0, value_len);
+	else if (header == SURNAME && !s->surname)
+		s->surname = ft_substr(value, 0, value_len);
+	else if (header == ID && !s->id)
+		s->id = ft_substr(value, 0, value_len);
+	else
+		return (0);
+	return (1);
+}
+
 void	*get_signup(char *request, unsigned int req_len)
 {
 	t_signup	*signup;
@@ -11,45 +26,22 @@ void	*get_signup(char *request, unsigned int req_len)
 	req_len -= 2;
 	header_count = (unsigned int)*request++;
 	signup = (t_signup *)malloc(sizeof(t_signup));
+	if (!signup)
+		return ((void *)0);
 	*signup = (t_signup){0, 0, 0, 0, 0};
 	while (header_count && req_len)
 	{
-		if (req_len < 2 || req_len < 2 + *(request + 1)) { // [header][value_len][value]
-			free(signup);
-			return ((void *)0);
-		}
-		if (*request == ID_TYPE && !signup->id_type) {
-			request += 2;
-			signup->id_type = *request++;
-			req_len -= 3;
-		}
-		else if ((*request == ID && !signup->id) || (*request == PASSWORD && !signup->password) ||
-				(*request == NAME && !signup->name) || (*request == SURNAME && !signup->surname)) {
-			if ((req_len - 2) < (unsigned int)*(++request)) { // [value_len = n] --> n*byte
-				free(signup);
-				return ((void *)0);
-			}
-			if (*(request - 1) == ID)
-				signup->id = ft_substr(request, 1, (unsigned int)*request);
-			else if (*(request - 1) == PASSWORD)
-				signup->password = ft_substr(request, 1, (unsigned int)*request);
-			else if (*(request - 1) == NAME)
-				signup->name = ft_substr(request, 1, (unsigned int)*request);
-			else
-				signup->surname = ft_substr(request, 1, (unsigned int)*request);
-			req_len -= 2 + *request;
-			request += *request + 1;
-		}
-		else {
-			free(signup);
-			return ((void *)0);
-		}
+		if (req_len < 2 || req_len < 2 + *(request + 1))
+			return ((void *)gets_crash(signup));
+		if (*request == ID_TYPE && !signup->id_type)
+			signup->id_type = *request;
+		else if (!string_header(*request, signup, request + 2, *(request + 1)))
+			return ((void *)gets_crash(signup));
 		header_count--;
+		req_len -= *(request + 1) + 2;
+		request += *(request + 1) + 2;
 	}
 	if (header_count || req_len)
-	{
-		free(signup);
-		return ((void *)0);
-	}
+		return ((void *)gets_crash(signup));
 	return ((void *)signup);
 }

@@ -1,5 +1,16 @@
 #include "parser.h"
 
+static int	string_header(char header, t_signup *s, char *value, unsigned int value_len)
+{
+	if (header == ID && !s->id)
+		s->id = ft_substr(value, 0, value_len);
+	else if (header == KEY && !s->key)
+		s->key = ft_substr(value, 0, value_len);
+	else
+		return (0);
+	return (1);_
+}
+
 void	*get_signout(char *request, unsigned int req_len)
 {
         t_signout        *signout;
@@ -14,42 +25,17 @@ void	*get_signout(char *request, unsigned int req_len)
         *signout = (t_signout){0, 0, 0};
         while (header_count && req_len)
         {
-                if (req_len < 2 || req_len < 2 + *(request + 1)) {
-                        free(signout);
-                        return ((void *)0);
-                }
-                if (*request == ID_TYPE && !signout->id_type) {
-                        request += 2;
-                        signout->id_type = *request++;
-                        req_len -= 3;
-                }
-                else if (*request == ID && !signout->id) {
-                        if (req_len - 2 < (unsigned int)*(++request)) {
-                                free(signout);
-                                return ((void *)0);
-                        }
-                        signout->id = ft_substr(request, 1, (unsigned int)*request);
-                        req_len -= 2 + *request;
-                        request += *request + 1;
-                }
-                else if (*request == KEY && !signout->key) {
-                        if (req_len - 2 < (unsigned int)*(++request)) {
-				free(signout);
-                                return ((void *)0);
-                        }
-                        signout->key = ft_substr(request, 1, (unsigned int)*request);
-                        req_len -= 2 + *request;
-                        request += *request + 1;
-                }
-                else {
-                        free(signout);
-                        return ((void *)0);
-                }
+                if (req_len < 2 || req_len < 2 + *(request + 1))
+                        return ((void *)gets_crash(signout));
+                if (*request == ID_TYPE && !signout->id_type)
+                        signout->id_type = *request;
+                else if (!string_header(*request, signup, request + 2, *(request + 1)))
+                        return ((void *)gets_crash(signout));
                 header_count--;
+		req_len -= *(request + 1) + 2;
+		request += *(request + 1) + 2;
         }
-        if (header_count || req_len) {
-                free(signout);
-                return ((void *)0);
-        }
+        if (header_count || req_len)
+                return ((void *)gets_crash(signout));
         return ((void *)signout);
 }

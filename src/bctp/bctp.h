@@ -6,13 +6,15 @@
 enum e_reqtypes{
 	SIGNUP,
 	SIGNIN,
-	SIGNOUT
+	SIGNOUT,
+	MESSAGE
 };
 
 // Request headers
 enum e_headers {
 	ID_TYPE,
 	ID,
+	TO_ID,
 	PASSWORD,
 	NAME,
 	SURNAME,
@@ -24,6 +26,14 @@ enum e_idtype{
 	TELNO,
 	EMAIL,
 	UNAME
+};
+
+enum	e_message {
+	TEXT_T,
+	IMAGE_T,
+	AUDIO_T,
+	VIDEO_T,
+	FILE_T
 };
 
 typedef struct	s_parsed_request {
@@ -50,4 +60,12 @@ typedef struct	s_signout {
 	char	*id;
 	char	*key;
 }	t_signout;
+
+typedef struct	s_message {
+	char	msg_type;
+	char	id_type;
+	char	*id;
+	char	*key;
+	char	*to_id;
+}	t_message;
 #endif
