@@ -17,6 +17,7 @@ void	*get_message(char *request, unsigned int req_len)
 {
 	t_message	*msg;
 	unsigned int	header_count;
+	unsigned int	content_len;
 
 	if (req_len < 2)
 		return ((void *)0);
@@ -39,7 +40,13 @@ void	*get_message(char *request, unsigned int req_len)
 		req_len -= *(request + 1) + 2;
 		request += *(request + 1) + 2;
 	}
-	if (header_counr || req_len)
+	content_len = *request++;
+	if (content_len == --req_len)
+	{
+		msg->content = ft_substr(request, 0, content_len);
+		content_len = 0;
+	}
+	if (header_counr || req_len || content_len)
 		return ((void *)gets_crash(msg));
 	return ((void *)msg);
 }

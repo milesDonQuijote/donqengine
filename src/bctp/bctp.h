@@ -67,5 +67,6 @@ typedef struct	s_message {
 	char	*id;
 	char	*key;
 	char	*to_id;
+	char	*content;
 }	t_message;
 #endif
