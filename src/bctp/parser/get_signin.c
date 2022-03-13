@@ -31,7 +31,7 @@ void	*get_signin(char *request, unsigned int req_len)
 			return ((void *)gets_crash(signin));
 		if (*request == ID_TYPE && !signin->id_type)
 			signin->id_type = *request;
-		else if (!string_header(*request, signin, request + 2, *(request  + 1))) {
+		else if (!string_header(*request, signin, request + 2, *(request  + 1)))
 			return ((void *)gets_crash(signin));
 		header_count--;
 		req_len -= *(request + 1) + 2;
