@@ -20,7 +20,7 @@ create_signin_request(t_signin *req)
 
 	request = (char *)malloc(sizeof(char) * req_len);
 	if (!request)
-		return ((t_requst_buf){0, 0});
+		return ((t_request_buf){0, 0});
 	
 	request[index++] = SIGNIN;		//request type
 	request[index++] = HEADER_COUNT;

@@ -1,6 +1,6 @@
 #include "parser.h"
 
-static int	string_header(char header, t_signup *s, char *value, unsigned int value_len)
+static int	string_header(char header, t_signout *s, char *value, unsigned int value_len)
 {
 	if (header == ID && !s->id)
 		s->id = ft_substr(value, 0, value_len);
@@ -8,7 +8,7 @@ static int	string_header(char header, t_signup *s, char *value, unsigned int val
 		s->key = ft_substr(value, 0, value_len);
 	else
 		return (0);
-	return (1);_
+	return (1);
 }
 
 void	*get_signout(char *request, unsigned int req_len)
@@ -29,7 +29,7 @@ void	*get_signout(char *request, unsigned int req_len)
                         return ((void *)gets_crash(signout));
                 if (*request == ID_TYPE && !signout->id_type)
                         signout->id_type = *(request + 2);
-                else if (!string_header(*request, signup, request + 2, *(request + 1)))
+                else if (!string_header(*request, signout, request + 2, *(request + 1)))
                         return ((void *)gets_crash(signout));
                 header_count--;
 		req_len -= *(request + 1) + 2;

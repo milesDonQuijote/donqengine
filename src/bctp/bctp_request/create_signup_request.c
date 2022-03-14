@@ -18,14 +18,14 @@ create_signup_request(t_signup *req)
 	psw_len = ft_strlen(req->password);
 	name_len = ft_strlen(req->name);
 	sname_len = ft_strlen(req->surname);
-	req_len = REQ_LEN + id_len + psw_len + name_len + s_name_len;
+	req_len = REQ_LEN + id_len + psw_len + name_len + sname_len;
 	
 	request = (char *)malloc(sizeof(char) * req_len);
 	if (!request)
 		return ((t_request_buf){0, 0});
 
 	request[index++] = SIGNUP;			//request type
-	request[index++] = HEDAER_COUNT;
+	request[index++] = HEADER_COUNT;
 	
 	request[index++] = ID_TYPE;
 	request[index++] = ID_TYPE_LEN;
@@ -54,5 +54,5 @@ create_signup_request(t_signup *req)
 	if (index == req_len)
 		return ((t_request_buf){request, index});
 	free(request);
-	return ((t_request_buf){0, 0})
+	return ((t_request_buf){0, 0});
 }

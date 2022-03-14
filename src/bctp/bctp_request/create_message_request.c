@@ -8,7 +8,7 @@
 t_request_buf
 create_message_request(t_message *req)
 {
-	char		*requst;
+	char		*request;
 	unsigned int	index;
 	unsigned int	req_len, id_len, key_len, toid_len;
 
@@ -27,7 +27,7 @@ create_message_request(t_message *req)
 	request[index++] = MESSAGE;			//request type
 	request[index++] = HEADER_COUNT;
 
-	request[index++] = MESSSAGE_TYPE;
+	request[index++] = MESSAGE_TYPE;
 	request[index++] = MSG_TYPE_LEN;
 	request[index++] = req->msg_type;
 

@@ -7,6 +7,6 @@ t_request	parse_bctp(void *request, unsigned int req_len)
 
 	req_c = (char *)request;
 	if (*req_c > REQTYPES_LEN)
-		return ((t_parsed_request){0, (void *)0});
+		return ((t_request){0, (void *)0});
 	return ((t_request){(int)*req_c, (runreq[*req_c])(request, req_len)});
 }

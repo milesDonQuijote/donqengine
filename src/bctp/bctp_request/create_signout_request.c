@@ -32,7 +32,7 @@ create_signout_request(t_signout *req)
 	request[index++] = ID;
 	request[index++] = id_len;
 	ft_strcpy(request + index, req->id);	//copy id to request from last index
-	index += id_len
+	index += id_len;
 
 	request[index++] = KEY;
 	request[index++] = key_len;

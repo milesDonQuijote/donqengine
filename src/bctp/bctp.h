@@ -1,7 +1,7 @@
 #ifndef BCTP_H
 # define BCTP_H
 
-# define REQTYPES_LEN 3
+# define REQTYPES_LEN 4
 // Request types
 enum e_reqtypes{
 	SIGNUP,

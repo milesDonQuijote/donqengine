@@ -8,7 +8,7 @@ void
 	dst_buf = (char *)dst;
 
 	if (!dst || !src)
-		return ((void *))
+		return ((void *)0);
 	while (len--)
 		*dst_buf++ = *src_buf++;
 	return (dst);
