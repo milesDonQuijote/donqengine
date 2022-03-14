@@ -37,10 +37,10 @@ enum	e_message {
 	FILE_T
 };
 
-typedef struct	s_parsed_request {
+typedef struct	s_request {
 	char	request_type;
 	void	*data;
-}	t_parsed_request;
+}	t_request;
 
 typedef struct	s_signup {
 	char	id_type;
@@ -63,11 +63,12 @@ typedef struct	s_signout {
 }	t_signout;
 
 typedef struct	s_message {
-	char	msg_type;
-	char	id_type;
-	char	*id;
-	char	*key;
-	char	*to_id;
-	char	*content;
+	char		msg_type;
+	char		id_type;
+	char		*id;
+	char		*key;
+	char		*to_id;
+	unsigned int	content_len;
+	char		*content;
 }	t_message;
 #endif
