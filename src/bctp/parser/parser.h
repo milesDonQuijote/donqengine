@@ -10,6 +10,6 @@ void	*get_signup(char *req, unsigned int req_len);
 void	*get_signin(char *req, unsigned int req_len);
 void	*get_signout(char *req, unsigned int req_len);
 
-int	gets_crash(void *mem);
+void	*gets_crash(void *mem);
 
 #endif

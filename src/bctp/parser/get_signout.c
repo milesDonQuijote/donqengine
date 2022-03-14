@@ -28,7 +28,7 @@ void	*get_signout(char *request, unsigned int req_len)
                 if (req_len < 2 || req_len < 2 + *(request + 1))
                         return ((void *)gets_crash(signout));
                 if (*request == ID_TYPE && !signout->id_type)
-                        signout->id_type = *request;
+                        signout->id_type = *(request + 2);
                 else if (!string_header(*request, signup, request + 2, *(request + 1)))
                         return ((void *)gets_crash(signout));
                 header_count--;

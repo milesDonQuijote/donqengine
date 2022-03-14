@@ -34,7 +34,7 @@ void	*get_signup(char *request, unsigned int req_len)
 		if (req_len < 2 || req_len < 2 + *(request + 1))
 			return ((void *)gets_crash(signup));
 		if (*request == ID_TYPE && !signup->id_type)
-			signup->id_type = *request;
+			signup->id_type = *(request + 2);
 		else if (!string_header(*request, signup, request + 2, *(request + 1)))
 			return ((void *)gets_crash(signup));
 		header_count--;

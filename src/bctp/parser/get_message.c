@@ -33,7 +33,9 @@ void	*get_message(char *request, unsigned int req_len)
 		if (req_len < 2 || req_len < 2 + *(request + 1))
 			return ((void *)gets_crash(msg));
 		if (*request == ID_TYPE && !msg->id_type)
-			msg->id_type = *request;
+			msg->id_type = *(request + 2);
+		else if (*request == MESSAGE_TYPE && !msg->msg_type)
+			msg->msg_type = *(request + 2);
 		else if (!string_header(*request, msg, request + 2, *(request + 1)))
 			return ((void *)gets_crash(msg));
 		header_count--;
@@ -41,12 +43,13 @@ void	*get_message(char *request, unsigned int req_len)
 		request += *(request + 1) + 2;
 	}
 	content_len = *request++;
-	if (content_len == --req_len)
+	if (req_len && content_len == --req_len)
 	{
 		msg->content = ft_substr(request, 0, content_len);
+		req_len -= content_len;
 		content_len = 0;
 	}
-	if (header_counr || req_len || content_len)
+	if (header_count || req_len || content_len)
 		return ((void *)gets_crash(msg));
 	return ((void *)msg);
 }

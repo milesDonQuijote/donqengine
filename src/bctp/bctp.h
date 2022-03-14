@@ -18,11 +18,12 @@ enum e_headers {
 	PASSWORD,
 	NAME,
 	SURNAME,
-	KEY
+	KEY,
+	MESSAGE_TYPE
 };
 
 // Id types
-enum e_idtype{
+enum e_idtype {
 	TELNO,
 	EMAIL,
 	UNAME
