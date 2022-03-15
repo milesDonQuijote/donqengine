@@ -46,7 +46,8 @@ void	*get_message(char *request, unsigned int req_len)
 	}
 	content_len = *(int *)request;
 	request += sizeof(int);
-	if (req_len && content_len == --req_len)
+	req_len -= sizeof(int);
+	if (req_len && content_len == req_len)
 	{
 		msg->content_len = content_len;
 		msg->content = ft_substr(request, 0, content_len);
