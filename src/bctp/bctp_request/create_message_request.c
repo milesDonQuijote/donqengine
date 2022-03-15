@@ -1,7 +1,7 @@
 #include "bctp_request.h"
 
-#define REQ_LEN 15 //request len without header values
-#define	HEADER_COUNT 5
+#define REQ_LEN 20 //request len without header values
+#define	HEADER_COUNT 6
 #define ID_TYPE_LEN 1;
 #define MSG_TYPE_LEN 1;
 
@@ -10,7 +10,7 @@ create_message_request(t_message *req)
 {
 	char		*request;
 	unsigned int	index;
-	unsigned int	req_len, id_len, key_len, toid_len;
+	unsigned int	req_len, id_len, key_len, toid_len, frm_len;
 
 	if (!req)
 		return ((t_request_buf){0, 0});
@@ -18,7 +18,8 @@ create_message_request(t_message *req)
 	id_len = ft_strlen(req->id);
 	key_len = ft_strlen(req->key);
 	toid_len = ft_strlen(req->to_id);
-	req_len = REQ_LEN + id_len + key_len + toid_len + req->content_len;
+	frm_len = ft_strlen(req->file_format);
+	req_len = REQ_LEN + id_len + key_len + toid_len + frm_len + req->content_len;
 
 	request = (char *)malloc(sizeof(char) * req_len);
 	if (!request)
@@ -50,7 +51,13 @@ create_message_request(t_message *req)
 	ft_strcpy(request + index, req->to_id);
 	index += toid_len;
 
-	request[index++] = (char)req->content_len;
+	request[index++] = FILE_FORMAT;
+	request[index++] = (char)frm_len;
+	ft_strcpy(request + index, req->file_format);
+	index += frm_len;
+
+	*(int *)(request + index) = (int)req->content_len;
+	index += sizeof(int);
 	ft_memcpy(request + index, req->content, req->content_len);
 	index += req->content_len;
 

@@ -19,7 +19,8 @@ enum e_headers {
 	NAME,
 	SURNAME,
 	KEY,
-	MESSAGE_TYPE
+	MESSAGE_TYPE,
+	FILE_FORMAT
 };
 
 // Id types
@@ -64,6 +65,7 @@ typedef struct	s_signout {
 
 typedef struct	s_message {
 	char		msg_type;
+	char		*file_format;
 	char		id_type;
 	char		*id;
 	char		*key;

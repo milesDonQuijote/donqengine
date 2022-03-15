@@ -8,6 +8,8 @@ static int	string_header(char header, t_message *s, char *value, unsigned int va
 		s->key = ft_substr(value, 0, value_len);
 	else if (header == TO_ID && !s->to_id)
 		s->to_id = ft_substr(value, 0, value_len);
+	else if (header == FILE_FORMAT && !s->file_format)
+		s->file_format = ft_substr(value, 0, value_len);
 	else
 		return (0);
 	return (1);
@@ -42,7 +44,8 @@ void	*get_message(char *request, unsigned int req_len)
 		req_len -= *(request + 1) + 2;
 		request += *(request + 1) + 2;
 	}
-	content_len = *request++;
+	content_len = *(int *)request;
+	request += sizeof(int);
 	if (req_len && content_len == --req_len)
 	{
 		msg->content_len = content_len;
