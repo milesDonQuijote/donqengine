@@ -13,6 +13,10 @@ void	*get_signin(char *req, unsigned int req_len);
 void	*get_signout(char *req, unsigned int req_len);
 void	*get_message(char *req, unsigned int req_len);
 
-void	*gets_crash(void *mem);
+static inline void	*gets_crash(void *mem)
+{
+	free(mem);
+	return ((void *)0);
+}
 
 #endif
