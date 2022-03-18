@@ -35,7 +35,7 @@ enum e_headers {
 	MESSAGE_TYPE,
 	FILE_FORMAT,
 	FILE_SIZE,
-	PEACE_COUNT
+	FRAGMENT_COUNT
 };
 
 // Id types
@@ -96,7 +96,14 @@ typedef struct	s_file {
 	char		*key;
 	char		*file_format;
 	unsigned int	file_size;
-	int		peace_count;
+	int		fragment_count;
 }	t_file;
+
+typedef struct	s_file_stream {
+	char	*key;
+	char	*f_key;
+	int	fragment_num;
+	char	*fragment;
+}
 
 #endif
