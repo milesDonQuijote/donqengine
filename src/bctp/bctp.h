@@ -7,7 +7,8 @@ enum e_reqtypes{
 	SIGNUP,
 	SIGNIN,
 	SIGNOUT,
-	MESSAGE
+	MESSAGE,
+	FILE_TRANSFER
 };
 
 // Request headers
@@ -20,7 +21,9 @@ enum e_headers {
 	SURNAME,
 	KEY,
 	MESSAGE_TYPE,
-	FILE_FORMAT
+	FILE_FORMAT,
+	FILE_SIZE,
+	PEACE_COUNT
 };
 
 // Id types
@@ -73,4 +76,14 @@ typedef struct	s_message {
 	unsigned int	content_len;
 	char		*content;
 }	t_message;
+
+struct typedef	s_file {
+	char		id_type; 
+	char		*id;
+	char		*to_id;
+	char		*key;
+	char		*file_format;
+	unsigned int	file_size;
+	int		peace_count;
+}	t_file;
 #endif

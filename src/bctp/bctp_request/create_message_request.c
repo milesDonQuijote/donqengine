@@ -2,8 +2,8 @@
 
 #define REQ_LEN 20 //request len without header values
 #define	HEADER_COUNT 6
-#define ID_TYPE_LEN 1;
-#define MSG_TYPE_LEN 1;
+#define ID_TYPE_LEN 1
+#define MSG_TYPE_LEN 1
 
 t_request_buf
 create_message_request(t_message *req)

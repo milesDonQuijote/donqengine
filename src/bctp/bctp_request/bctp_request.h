@@ -22,4 +22,6 @@ create_signout_request(t_signout *req);
 t_request_buf
 create_message_request(t_message *req);
 
+t_request_buf
+create_file_request(t_file *req);
 #endif
