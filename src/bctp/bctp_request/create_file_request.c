@@ -4,7 +4,7 @@
 #define HEADER_COUNT 7
 #define ID_TYPE_LEN 1
 #define FILE_SIZE_LEN 8
-#define PEACE_COUNT 4
+#define FRAGMENT_COUNT_LEN 4
 
 t_request_buf
 create_file_request(t_file *req)

@@ -13,15 +13,15 @@ enum e_reqtypes {
 
 // Respones types
 enum e_responses {
-	ID_USED;
-	AUTH_FAILED;
-	AUTH_SUCCESS;
-	FILE_FAILED;
-	FILE_SUCCESS;
-	DST_FOUND;
-	DST_NOTFOUND;
-	REQ_INVALID;
-}
+	ID_USED,
+	AUTH_FAILED,
+	AUTH_SUCCESS,
+	FILE_FAILED,
+	FILE_SUCCESS,
+	DST_FOUND,
+	DST_NOTFOUND,
+	REQ_INVALID
+};
 
 // Request headers
 enum e_headers {
@@ -104,6 +104,6 @@ typedef struct	s_file_stream {
 	char	*f_key;
 	int	fragment_num;
 	char	*fragment;
-}
+}	t_file_stream;
 
 #endif
