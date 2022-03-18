@@ -1,15 +1,27 @@
 #ifndef BCTP_H
 # define BCTP_H
 
-# define REQTYPES_LEN 4
+# define REQTYPES_LEN 5
 // Request types
-enum e_reqtypes{
+enum e_reqtypes {
 	SIGNUP,
 	SIGNIN,
 	SIGNOUT,
 	MESSAGE,
 	FILE_TRANSFER
 };
+
+// Respones types
+enum e_responses {
+	ID_USED;
+	AUTH_FAILED;
+	AUTH_SUCCESS;
+	FILE_FAILED;
+	FILE_SUCCESS;
+	DST_FOUND;
+	DST_NOTFOUND;
+	REQ_INVALID;
+}
 
 // Request headers
 enum e_headers {
@@ -77,7 +89,7 @@ typedef struct	s_message {
 	char		*content;
 }	t_message;
 
-struct typedef	s_file {
+typedef struct	s_file {
 	char		id_type; 
 	char		*id;
 	char		*to_id;
@@ -86,4 +98,5 @@ struct typedef	s_file {
 	unsigned int	file_size;
 	int		peace_count;
 }	t_file;
+
 #endif
