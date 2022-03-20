@@ -13,7 +13,8 @@ enum e_reqtypes {
 	FILE_STREAM,
 	FILE_STREAM_END,
 	//RESPONES
-	AUTH_SUCCESS
+	AUTH_SUCCESS,
+	FSTREAM_SUCCESS
 };
 
 // Respones types

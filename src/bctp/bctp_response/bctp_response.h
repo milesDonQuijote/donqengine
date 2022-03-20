@@ -10,6 +10,9 @@ typedef struct	s_response_buf {
 	unsigned int	len;
 }
 
+t_response_buf
+create_fstream_success_response(unsigned int len);
+
 static inline t_response_buf
 create_id_used_response() {
 	char	req = ID_USED;
