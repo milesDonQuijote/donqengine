@@ -1,6 +1,7 @@
 #include "bctp_request.h"
 
 #define REQ_LEN 8
+#define HEADER_COUNT 2
 
 t_request_buf
 create_fstream_request(t_file_stream *req)
@@ -43,7 +44,7 @@ create_fstream_request(t_file_stream *req)
 	index += fragment_len;
 
 	if (index == req_len)
-		return ((t_request__buf){request, index});
+		return ((t_request_buf){request, index});
 	free(request);
 	return ((t_request_buf){0, 0});
 

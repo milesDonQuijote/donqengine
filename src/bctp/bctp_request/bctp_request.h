@@ -31,9 +31,7 @@ create_fstream_request(t_file_stream *req);
 static inline t_request_buf
 create_fstream_end_request()
 {
-	char	req[2];
-	*req = FILE_STREAM_END;
-	req[1] = 0;
-	return ((t_request_buf){ft_strcpy((char *)malloc(sizeof(char), req))});
+	char	req = FILE_STREAM_END;
+	return ((t_request_buf){ft_strncpy((char *)malloc(sizeof(char)), &req, 1)});
 }
 #endif

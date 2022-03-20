@@ -104,7 +104,7 @@ typedef struct	s_file {
 
 typedef struct	s_file_stream {
 	char		*key;
-	char		*f_key;
+	char		*fkey;
 	int		fragment_num;
 	unsigned int	fragment_len;
 	char		*fragment;

@@ -38,17 +38,17 @@ void	*get_fstream(char *request, unsigned int req_len)
 	}
 	if (req_len < sizeof(int) + sizeof(unsigned int))
 		return ((void *)0);
-	fstream.fragment_num = *(int *)request;
+	fstream->fragment_num = *(int *)request;
 	request += sizeof(int);
-	fstream.fragment_len = *(unsigned int *)request;
+	fstream->fragment_len = *(unsigned int *)request;
 	request += sizeof(unsigned int);
 	req_len -= sizeof(int) + sizeof(unsigned int);
-	if (req_len && content_len == req_len)
+	if (req_len && fragment_len == req_len)
 	{
-		fstream.fragment = ft_substr(request, 0, fstream.fragment_len);
-		req_len -= fstream.fragment_len;
+		fstream->fragment = ft_substr(request, 0, fstream->fragment_len);
+		req_len -= fstream->fragment_len;
 	}
 	if (header_count || req_len)
-		return ((void *)get_crash(fstream));
+		return ((void *)gets_crash(fstream));
 	return ((void *)fstream);
 }

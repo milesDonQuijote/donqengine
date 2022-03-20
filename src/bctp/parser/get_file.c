@@ -15,7 +15,7 @@ static int	string_header(char header, t_file *s, char *value, unsigned int value
 	return (1);
 }
 
-void	get_file(char *request, unsigned int req_len)
+void	*get_file(char *request, unsigned int req_len)
 {
 	t_file		*file;
 	unsigned int	header_count;
@@ -32,7 +32,7 @@ void	get_file(char *request, unsigned int req_len)
 	while (header_count && req_len)
 	{
 		if (req_len < 2 || req_len < 2 + *(request + 1))
-			return ((void *)gets_crash(signup));
+			return ((void *)gets_crash(file));
 		if (*request == ID_TYPE && !file->id_type)
 			file->id_type = *(request + 2);
 		else if (!string_header(*request, file, request + 2, *(request + 1)))

@@ -29,7 +29,7 @@ void
 static inline void
 *get_fstream_end(char *request, unsigned int req_len)
 {
-	return ((t_request){(int)*request, 0});
+	return ((void *)0);
 }
 
 
