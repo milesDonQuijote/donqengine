@@ -21,7 +21,6 @@ enum e_reqtypes {
 enum e_responses {
 	ID_USED,
 	AUTH_FAILED,
-	AUTH_SUCCESS,
 	FILE_FAILED,
 	FILE_SUCCESS,
 	DST_FOUND,

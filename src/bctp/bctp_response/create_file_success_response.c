@@ -1,4 +1,4 @@
-#include "bctp_responce.h"
+#include "bctp_response.h"
 
 #define REQ_LEN 3
 

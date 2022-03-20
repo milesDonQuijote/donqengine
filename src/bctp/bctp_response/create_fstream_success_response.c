@@ -13,8 +13,8 @@ create_fstream_success_response(unsigned int len)
 	if (!response)
 		return ((t_response_buf){0, 0});
 	index = 0;
-	request[index++] = FSTREAM_SUCCESS;
-	*(unsigned int)(request + index) = len;
+	response[index++] = FSTREAM_SUCCESS;
+	*(unsigned int *)(response + index) = len;
 	index += sizeof(len);
 
 	if (index == req_len)

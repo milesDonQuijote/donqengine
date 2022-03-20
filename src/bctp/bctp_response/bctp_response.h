@@ -2,13 +2,13 @@
 # define BCTP_RESPONSE_H
 
 # include "../bctp.h"
-# include "../../string.h"
+# include "../../string/strings.h"
 # include <stdlib.h>
 
 typedef struct	s_response_buf {
 	char		*buf;
 	unsigned int	len;
-}
+}	t_response_buf;
 
 t_response_buf
 create_fstream_success_response(unsigned int len);
@@ -16,7 +16,7 @@ create_fstream_success_response(unsigned int len);
 static inline t_response_buf
 create_id_used_response() {
 	char	req = ID_USED;
-	return ((t_response_buf){ft_stnrcpy((char *)malloc(sizeof(char)), &req, 1), 1});
+	return ((t_response_buf){ft_strncpy((char *)malloc(sizeof(char)), &req, 1), 1});
 }
 
 static inline t_response_buf

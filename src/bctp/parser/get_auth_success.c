@@ -2,7 +2,7 @@
 
 void	*get_auth_success(char *request, unsigned int req_len)
 {
-	char		key;
+	char		*key;
 	unsigned int	header_count;
 
 	if (req_len < 2 || !request)
