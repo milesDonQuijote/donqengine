@@ -43,12 +43,9 @@ void	*get_fstream(char *request, unsigned int req_len)
 	fstream->fragment_len = *(unsigned int *)request;
 	request += sizeof(unsigned int);
 	req_len -= sizeof(int) + sizeof(unsigned int);
-	if (req_len && fragment_len == req_len)
-	{
-		fstream->fragment = ft_substr(request, 0, fstream->fragment_len);
-		req_len -= fstream->fragment_len;
-	}
-	if (header_count || req_len)
+	if (req_len)
+		fstream->fragment = ft_substr(request, 0, req_len);
+	if (header_count)
 		return ((void *)gets_crash(fstream));
 	return ((void *)fstream);
 }
