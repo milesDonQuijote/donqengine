@@ -28,13 +28,15 @@ void	*get_file(char *request, unsigned int req_len)
 	file = (t_file *)malloc(sizeof(t_file));
 	if (!file)
 		return ((void *)0);
-	*file = (t_file){0, 0, 0, 0, 0, 0, 0};
+	*file = (t_file){0, 0, 0, 0, 0, 0};
 	while (header_count && req_len)
 	{
 		if (req_len < 2 || req_len < 2 + *(request + 1))
 			return ((void *)gets_crash(file));
 		if (*request == ID_TYPE && !file->id_type)
 			file->id_type = *(request + 2);
+		else if (*request == FILE_SIZE && !file->file_size)
+			file->file_size = *(unsigned int *)(request + 2);
 		else if (!string_header(*request, file, request + 2, *(request + 1)))
 			return ((void *)gets_crash(file));
 		header_count--;

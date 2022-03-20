@@ -1,10 +1,9 @@
 #include "bctp_request.h"
 
-#define REQ_LEN 29 //request len without header values
-#define HEADER_COUNT 7
+#define REQ_LEN 19 //request len without header values
+#define HEADER_COUNT 6
 #define ID_TYPE_LEN 1
-#define FILE_SIZE_LEN 8
-#define FRAGMENT_COUNT_LEN 4
+#define FILE_SIZE_LEN 4
 
 t_request_buf
 create_file_request(t_file *req)
@@ -56,11 +55,6 @@ create_file_request(t_file *req)
 	request[index++] = FILE_SIZE_LEN;
 	*(unsigned int *)(request + index) = req->file_size;
 	index += sizeof(unsigned int);
-
-	request[index++] = FRAGMENT_COUNT;
-	request[index++] = FRAGMENT_COUNT_LEN;
-	*(int *)(request + index) = req->fragment_count;
-	index += sizeof(int);
 
 	if (index == req_len)
 		return ((t_request_buf){request, index});

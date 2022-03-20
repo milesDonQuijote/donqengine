@@ -99,7 +99,6 @@ typedef struct	s_file {
 	char		*key;
 	char		*file_format;
 	unsigned int	file_size;
-	int		fragment_count;
 }	t_file;
 
 typedef struct	s_file_stream {
