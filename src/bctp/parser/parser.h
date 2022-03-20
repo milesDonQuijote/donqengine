@@ -26,12 +26,14 @@ void
 void
 *get_fstream(char *request, unsigned int req_len);
 
+void
+*get_auth_success(char *request, unsigned int req_len);
+
 static inline void
 *get_fstream_end(char *request, unsigned int req_len)
 {
 	return ((void *)0);
 }
-
 
 static inline void
 *gets_crash(void *mem)

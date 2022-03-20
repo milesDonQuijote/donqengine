@@ -1,6 +1,6 @@
 #include "parser.h"
 
-static int	string_header(char header, t_file_stream *s, char *value, unsigned int value_len)
+static inline int	string_header(char header, t_file_stream *s, char *value, unsigned int value_len)
 {
 	if (header == KEY && !s->key)
 		s->key = ft_substr(value, 0, value_len);

@@ -1,6 +1,6 @@
 #include "parser.h"
 
-static int	string_header(char header, t_signin *s, char *value, unsigned int value_len)
+static inline int	string_header(char header, t_signin *s, char *value, unsigned int value_len)
 {
 	if (header == ID && !s->id)
 		s->id = ft_substr(value, 0, value_len);

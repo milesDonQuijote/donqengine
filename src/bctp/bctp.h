@@ -1,16 +1,19 @@
 #ifndef BCTP_H
 # define BCTP_H
 
-# define REQTYPES_LEN 7
+# define REQTYPES_LEN 8
 // Request types
 enum e_reqtypes {
+	//REQUESTS
 	SIGNUP,
 	SIGNIN,
 	SIGNOUT,
 	MESSAGE,
 	FILE_TRANSFER,
 	FILE_STREAM,
-	FILE_STREAM_END
+	FILE_STREAM_END,
+	//RESPONES
+	AUTH_SUCCESS
 };
 
 // Respones types
