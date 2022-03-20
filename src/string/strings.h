@@ -9,6 +9,9 @@ char
 char		
 *ft_strcpy(char *dst, char *src);
 
+char
+*ft_strncpy(char *dst, char *src, unsigned int len);
+
 unsigned int
 ft_strlen(char *str);
 

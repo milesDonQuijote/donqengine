@@ -1,14 +1,16 @@
 #ifndef BCTP_H
 # define BCTP_H
 
-# define REQTYPES_LEN 5
+# define REQTYPES_LEN 7
 // Request types
 enum e_reqtypes {
 	SIGNUP,
 	SIGNIN,
 	SIGNOUT,
 	MESSAGE,
-	FILE_TRANSFER
+	FILE_TRANSFER,
+	FILE_STREAM,
+	FILE_STREAM_END
 };
 
 // Respones types
@@ -32,6 +34,7 @@ enum e_headers {
 	NAME,
 	SURNAME,
 	KEY,
+	FKEY,
 	MESSAGE_TYPE,
 	FILE_FORMAT,
 	FILE_SIZE,
@@ -100,10 +103,11 @@ typedef struct	s_file {
 }	t_file;
 
 typedef struct	s_file_stream {
-	char	*key;
-	char	*f_key;
-	int	fragment_num;
-	char	*fragment;
+	char		*key;
+	char		*f_key;
+	int		fragment_num;
+	unsigned int	fragment_len;
+	char		*fragment;
 }	t_file_stream;
 
 #endif
